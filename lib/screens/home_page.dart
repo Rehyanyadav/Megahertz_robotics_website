@@ -1,19 +1,20 @@
+// ignore_for_file: unused_field
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:megahertz_robotics/components/carisoule.dart';
 import 'package:megahertz_robotics/desktop/about_us_desktop.dart';
-import 'package:simple_animations/simple_animations.dart';
 
-import 'package:carousel_slider/carousel_slider.dart';
-import 'dart:math';
 import '../components/drawer_mobile_tab.dart';
+import '../components/sections_headline_text.dart';
 import '../constants/size.dart';
 import '../desktop/navbar_desktop.dart';
 
+import '../desktop/products_section_desktop.dart';
 import '../mobile/about_section_mobile.dart';
 import '../mobile/nav_bar_mobile_tab.dart';
+import '../mobile/products_section_mobile.dart';
 
 // Import statements organized and unused imports removed
 
@@ -95,30 +96,77 @@ class _HomePageState extends State<HomePage>
                             color: Colors.amber,
                             duration: const Duration(seconds: 3)),
                     const SizedBox(
-                      height: 20,
+                      height: 50,
                     ),
 
                     //* CARISOULE Ends here
 
                     //* ABOUT Sections
-                    Center(
-                            child: Text('About US ',
-                                style: TextStyle(
-                                    color: const Color.fromARGB(
-                                        255, 255, 255, 255),
-                                    fontSize: 40,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: GoogleFonts.abel().fontFamily)))
+                    BorderBeam(
+                      duration: 7, // 7-second animation cycle
+                      colorFrom: Colors.blue,
+                      colorTo: Colors.purple,
+                      staticBorderColor: Colors.black,
+                      borderRadius: BorderRadius.circular(20),
+                      padding: const EdgeInsets.all(16),
+                      child: Container(
+                        width: 400,
+                        height: 50,
+                        child: const Center(
+                          child: Text(
+                            'A B O U T  U S',
+                            style: TextStyle(color: Colors.amber, fontSize: 40),
+                          ),
+                        ),
+                      ),
+                    )
                         .animate()
                         .scale(
-                            duration: const Duration(seconds: 2),
+                            duration: const Duration(seconds: 3),
                             curve: Curves.fastOutSlowIn)
                         .then()
                         .shimmer(
                             color: Colors.amber,
-                            duration: const Duration(seconds: 3)),
+                            duration: const Duration(seconds: 4)),
 
                     _buildAboutSection(isDesktop),
+
+                    //* BUY PRODUCTS
+                    const SizedBox(
+                      height: 40,
+                    ),
+
+                    BorderBeam(
+                      duration: 7, // 7-second animation cycle
+                      colorFrom: Colors.blue,
+                      colorTo: Colors.purple,
+                      staticBorderColor: Colors.black,
+                      borderRadius: BorderRadius.circular(20),
+                      padding: const EdgeInsets.all(16),
+                      child: Container(
+                        width: 400,
+                        height: 50,
+                        child: const Center(
+                          child: Text(
+                            'P R O D U C T S',
+                            style: TextStyle(color: Colors.amber, fontSize: 40),
+                          ),
+                        ),
+                      ),
+                    )
+                        .animate()
+                        .scale(
+                            duration: const Duration(seconds: 3),
+                            curve: Curves.fastOutSlowIn)
+                        .then()
+                        .shimmer(
+                            color: Colors.amber,
+                            duration: const Duration(seconds: 4)),
+
+                    const SizedBox(
+                      height: 50,
+                    ),
+                    _buildProductSection(isDesktop)
                   ],
                 ),
               ),
@@ -140,4 +188,11 @@ class _HomePageState extends State<HomePage>
 
 Widget _buildAboutSection(bool isDesktop) {
   return isDesktop ? const AboutSectionDesktop() : const AboutSectionMobTab();
+}
+
+//* PRODUCTS SECTIONS
+Widget _buildProductSection(bool isDesktop) {
+  return isDesktop
+      ? const ProductSectionDesktop()
+      : const ProductSectionMobTab();
 }

@@ -11,7 +11,7 @@ class Particles extends StatefulWidget {
   final double vy;
 
   const Particles({
-    Key? key,
+    super.key,
     this.quantity = 100,
     this.ease = 50,
     required this.color,
@@ -19,7 +19,7 @@ class Particles extends StatefulWidget {
     this.size = 0.4,
     this.vx = 0,
     this.vy = 0,
-  }) : super(key: key);
+  });
 
   @override
   State<Particles> createState() => _ParticlesState();

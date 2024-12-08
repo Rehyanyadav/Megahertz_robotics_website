@@ -55,13 +55,6 @@ class DrawerMobileTab extends StatelessWidget {
                 ),
 
                 // Menu Items
-                _buildMenuItem(
-                  icon: Icons.stars_outlined,
-                  title: 'Participation/Achievements',
-                  onTap: () {
-                    // Navigation logic
-                  },
-                ),
 
                 _buildMenuItem(
                   icon: Icons.shopping_cart_outlined,
@@ -90,54 +83,55 @@ class DrawerMobileTab extends StatelessWidget {
                 const SizedBox(height: 30),
 
                 // Social Media Buttons
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      const SizedBox(width: 20),
-                      const SizedBox(width: 10),
-                      _socialMediaIcon(
-                        icon: const SocialMediaButton.linkedin(
-                          url:
-                              "https://www.linkedin.com/company/alphacodes101/",
-                          size: 30,
-                          color: Color.fromARGB(255, 0, 19, 194),
-                        ),
+                Row(
+                  children: [
+                    const SizedBox(width: 20),
+                    const SizedBox(width: 10),
+                    _socialMediaIcon(
+                      icon: const SocialMediaButton.linkedin(
                         url: "https://www.linkedin.com/company/alphacodes101/",
+                        size: 30,
+                        color: Color.fromARGB(255, 0, 19, 194),
                       ),
-                      const SizedBox(width: 10),
-                      _socialMediaIcon(
-                        icon: const SocialMediaButton.facebook(
-                          url:
-                              "https://www.facebook.com/profile.php?id=100077276373410&mibextid=JRoKGi",
-                          size: 30,
-                          color: Color.fromARGB(255, 4, 0, 255),
-                        ),
+                      url: "https://www.linkedin.com/company/alphacodes101/",
+                    ),
+                    const SizedBox(width: 10),
+                    _socialMediaIcon(
+                      icon: const SocialMediaButton.facebook(
                         url:
                             "https://www.facebook.com/profile.php?id=100077276373410&mibextid=JRoKGi",
+                        size: 30,
+                        color: Color.fromARGB(255, 4, 0, 255),
                       ),
-                      const SizedBox(width: 10),
-                      _socialMediaIcon(
-                        icon: const SocialMediaButton.youtube(
-                          url: "https://www.youtube.com/@alphacodes8618",
-                          size: 30,
-                          color: Color.fromARGB(255, 255, 0, 0),
-                        ),
+                      url:
+                          "https://www.facebook.com/profile.php?id=100077276373410&mibextid=JRoKGi",
+                    ),
+                    const SizedBox(width: 10),
+                    _socialMediaIcon(
+                      icon: const SocialMediaButton.youtube(
                         url: "https://www.youtube.com/@alphacodes8618",
+                        size: 30,
+                        color: Color.fromARGB(255, 255, 0, 0),
                       ),
-                      const SizedBox(width: 10),
-                      _socialMediaIcon(
-                        icon: const Icon(
-                          FontAwesomeIcons.blogger,
-                          color: Colors.orangeAccent,
-                          size: 30,
-                        ),
-                        url:
-                            'https://codewithrehyan.blogspot.com/2024/05/linked-list-questions-you-have-been.html',
+                      url: "https://www.youtube.com/@alphacodes8618",
+                    ),
+                    const SizedBox(width: 10),
+                    _socialMediaIcon(
+                      icon: const Icon(
+                        FontAwesomeIcons.blogger,
+                        color: Colors.orangeAccent,
+                        size: 30,
                       ),
-                      const SizedBox(width: 10),
-                    ],
-                  ),
+                      url:
+                          '',
+                    ),
+                    const SizedBox(width: 10),
+                  ],
+                ),
+                const SizedBox(height: 20),
+                const Text(
+                  'Co.powered by AlphaCodes101',
+                  style: TextStyle(color: Colors.white, fontSize: 15),
                 ),
               ],
             ),

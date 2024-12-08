@@ -41,45 +41,39 @@ class _NavbarDesktopState extends State<NavbarDesktop> {
           ),
           const Spacer(),
           const Spacer(),
-          Row(children: [
-            TextButton(
-                onPressed: () {},
-                child: const Text(
-                  'Achivements ',
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    color: Color.fromARGB(255, 255, 196, 0),
-                  ),
-                )),
-            TextButton(
-                onPressed: () {},
-                child: const Text(
-                  'Buy Products',
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    color: Color.fromARGB(255, 255, 196, 0),
-                  ),
-                )),
-            TextButton(
-                onPressed: () {},
-                child: Text(
-                  'Customized Products',
-                  style: TextStyle(
-                    fontStyle: GoogleFonts.abel().fontStyle,
-                    fontSize: 18.0,
-                    color: const Color.fromARGB(255, 255, 196, 0),
-                  ),
-                )),
-            TextButton(
-                onPressed: () {},
-                child: const Text(
-                  'Tutorials ',
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    color: Color.fromARGB(255, 255, 196, 0),
-                  ),
-                )),
-          ])
+          Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                TextButton(
+                    onPressed: () {},
+                    child: const Text(
+                      'Buy Products',
+                      style: TextStyle(
+                        fontSize: 25.0,
+                        color: Color.fromARGB(255, 255, 196, 0),
+                      ),
+                    )),
+                TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      'Customized Products',
+                      style: TextStyle(
+                        fontStyle: GoogleFonts.abel().fontStyle,
+                        fontSize: 25.0,
+                        color: const Color.fromARGB(255, 255, 196, 0),
+                      ),
+                    )),
+                TextButton(
+                    onPressed: () {},
+                    child: const Text(
+                      'Tutorials ',
+                      style: TextStyle(
+                        fontSize: 25.0,
+                        color: Color.fromARGB(255, 255, 196, 0),
+                      ),
+                    )),
+              ])
         ],
       ),
     );

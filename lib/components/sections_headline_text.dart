@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// ignore: unused_import
 import 'dart:math' as math;
 import 'dart:ui' as ui;
 
@@ -13,7 +14,7 @@ class BorderBeam extends StatefulWidget {
   final EdgeInsetsGeometry padding;
 
   const BorderBeam({
-    Key? key,
+    super.key,
     required this.child,
     this.duration = 15,
     this.borderWidth = 1.5,
@@ -22,9 +23,10 @@ class BorderBeam extends StatefulWidget {
     this.staticBorderColor = const Color(0xFFCCCCCC),
     this.borderRadius = const BorderRadius.all(Radius.circular(12)),
     this.padding = EdgeInsets.zero,
-  }) : super(key: key);
+  });
 
   @override
+  // ignore: library_private_types_in_public_api
   _BorderBeamState createState() => _BorderBeamState();
 }
 
@@ -155,7 +157,7 @@ class BorderBeamPainter extends CustomPainter {
 
 // Example Home Widget to demonstrate usage
 class BorderBeamHomeWidget extends StatelessWidget {
-  const BorderBeamHomeWidget({Key? key}) : super(key: key);
+  const BorderBeamHomeWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -168,11 +170,11 @@ class BorderBeamHomeWidget extends StatelessWidget {
           colorTo: Colors.purple,
           staticBorderColor: const Color.fromARGB(255, 39, 39, 42),
           borderRadius: BorderRadius.circular(20),
-          padding: EdgeInsets.all(16),
-          child: Container(
+          padding: const EdgeInsets.all(16),
+          child: const SizedBox(
             width: 200,
             height: 200,
-            child: const Center(
+            child: Center(
               child: Text(
                 'Border Beam',
                 style: TextStyle(fontSize: 24, color: Colors.white),

@@ -133,33 +133,11 @@ class CarouselExample extends StatelessWidget {
       appBar: AppBar(title: const Text('Responsive Carousel Demo')),
       body: ResponsiveCarousel(
         items: [
-          // Example items - replace with your own widgets
-          Container(color: Colors.red, child: Image.asset('assets/logo.png')),
-          Container(
-            color: Colors.green,
-            child: Stack(
-              children: [
-                Text('OUR ACHIVEMENTS',
-                    style: TextStyle(
-                        color: const Color.fromARGB(255, 255, 255, 255),
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: GoogleFonts.abel().fontFamily)),
-                Image.asset('assets/logo.png')
-              ],
-            ),
-          ),
-          Container(
-              color: Colors.blue,
-              child: Center(
-                child: Image.asset('assets/logo.png'),
-              )),
-
-          Container(
-              color: Colors.blue,
-              child: Center(
-                child: Image.asset('assets/logo.png'),
-              ))
+          Image.asset('assets/achivements_Participation_photos/image01.jpg'),
+          Image.asset('assets/achivements_Participation_photos/image02.jpg'),
+          Image.asset('assets/achivements_Participation_photos/image04.jpg'),
+          Image.asset('assets/achivements_Participation_photos/image06.jpg'),
+          Image.asset('assets/achivements_Participation_photos/image07.jpg'),
         ],
         aspectRatio: 16 / 9,
         autoPlay: true,

@@ -53,6 +53,8 @@ dependencies:
   supercharged: ^2.1.1
   carousel_slider: ^5.0.0
   visibility_detector: ^0.4.0+2
+  meta_seo: ^3.0.9
+  youtube_player_flutter: ^9.1.1
 
 
 dev_dependencies:
@@ -81,6 +83,9 @@ flutter:
   assets:
     - assets/
     - assets/aboutus/
+    - assets/achivements_Participation_photos/
+    - assets/youtube/
+    - assets/custom_project/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

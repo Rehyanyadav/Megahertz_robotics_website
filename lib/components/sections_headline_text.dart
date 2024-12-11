@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-// ignore: unused_import
-import 'dart:math' as math;
 import 'dart:ui' as ui;
 
 class BorderBeam extends StatefulWidget {
@@ -17,7 +15,7 @@ class BorderBeam extends StatefulWidget {
     super.key,
     required this.child,
     this.duration = 15,
-    this.borderWidth = 1.5,
+    this.borderWidth = 1.7,
     this.colorFrom = const Color(0xFFFFAA40),
     this.colorTo = const Color(0xFF9C40FF),
     this.staticBorderColor = const Color(0xFFCCCCCC),
@@ -41,9 +39,8 @@ class _BorderBeamState extends State<BorderBeam>
     _controller = AnimationController(
       duration: Duration(seconds: widget.duration.toInt()),
       vsync: this,
-    );
+    )..repeat();
     _animation = Tween<double>(begin: 0, end: 1).animate(_controller);
-    _controller.repeat();
   }
 
   @override
@@ -106,13 +103,11 @@ class BorderBeamPainter extends CustomPainter {
     canvas.drawRRect(rrect, staticPaint);
 
     final path = Path()..addRRect(rrect);
-
     final pathMetrics = path.computeMetrics().first;
     final pathLength = pathMetrics.length;
 
-    // Adjust the animation to prevent the jump
-    final animationProgress = progress % 1.0;
-    final start = animationProgress * pathLength;
+    // Animation progress
+    final start = (progress * pathLength) % pathLength;
     final end = (start + pathLength / 4) % pathLength;
 
     Path extractPath;
@@ -123,7 +118,7 @@ class BorderBeamPainter extends CustomPainter {
       extractPath.addPath(pathMetrics.extractPath(0, end), Offset.zero);
     }
 
-    // Calculate gradient start and end points
+    // Gradient calculation
     final gradientStart =
         pathMetrics.getTangentForOffset(start)?.position ?? Offset.zero;
     final gradientEnd = pathMetrics
@@ -133,18 +128,17 @@ class BorderBeamPainter extends CustomPainter {
 
     final paint = Paint()
       ..style = PaintingStyle.stroke
-      ..strokeWidth = borderWidth;
-
-    paint.shader = ui.Gradient.linear(
-      gradientStart,
-      gradientEnd,
-      [
-        colorTo.withOpacity(0.0), // Transparent color for fading effect
-        colorTo,
-        colorFrom,
-      ],
-      [0.0, 0.3, 1.0],
-    );
+      ..strokeWidth = borderWidth
+      ..shader = ui.Gradient.linear(
+        gradientStart,
+        gradientEnd,
+        [
+          colorTo.withOpacity(0.0), // Transparent color for fading effect
+          colorTo,
+          colorFrom,
+        ],
+        [0.0, 0.3, 1.0],
+      );
 
     canvas.drawPath(extractPath, paint);
   }
@@ -152,37 +146,5 @@ class BorderBeamPainter extends CustomPainter {
   @override
   bool shouldRepaint(covariant BorderBeamPainter oldDelegate) {
     return oldDelegate.progress != progress;
-  }
-}
-
-// Example Home Widget to demonstrate usage
-class BorderBeamHomeWidget extends StatelessWidget {
-  const BorderBeamHomeWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black,
-      body: Center(
-        child: BorderBeam(
-          duration: 7,
-          colorFrom: Colors.blue,
-          colorTo: Colors.purple,
-          staticBorderColor: const Color.fromARGB(255, 39, 39, 42),
-          borderRadius: BorderRadius.circular(20),
-          padding: const EdgeInsets.all(16),
-          child: const SizedBox(
-            width: 200,
-            height: 200,
-            child: Center(
-              child: Text(
-                'Border Beam',
-                style: TextStyle(fontSize: 24, color: Colors.white),
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
   }
 }

@@ -14,41 +14,28 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> _scaleAnimation;
-  late Animation<double> _fadeAnimation;
+  late final AnimationController _controller;
+  late final Animation<double> _animation;
 
   @override
   void initState() {
     super.initState();
 
-    // Animation controller for 2 seconds duration
     _controller = AnimationController(
-      duration: const Duration(seconds: 1),
+      duration: const Duration(seconds: 2),
       vsync: this,
     );
 
-    // Scale animation to make logo grow
-    _scaleAnimation = Tween<double>(begin: 0.1, end: 1.0).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: Curves.elasticOut,
-      ),
+    // Unified animation for both fade and scale effects
+    _animation = CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeOutBack,
     );
 
-    // Fade animation for text and logo
-    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: Curves.easeIn,
-      ),
-    );
-
-    // Start the animation
     _controller.forward();
 
-    // Navigate to homepage after 4 seconds
-    Timer(const Duration(seconds: 4), () {
+    // Navigate to HomePage after 4 seconds
+    Timer(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const HomePage()),
@@ -57,35 +44,56 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 0, 0, 0),
+      backgroundColor: Colors.black,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             FadeTransition(
-              opacity: _fadeAnimation,
+              opacity: _animation,
               child: ScaleTransition(
-                scale: _scaleAnimation,
+                scale: _animation,
                 child: HyperText(
                   text: "MegaHertz Robotics",
-                  style: TextStyle(
-                      fontStyle: GoogleFonts.dancingScript().fontStyle,
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.orange),
+                  style: GoogleFonts.orbitron(
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                    color: const Color.fromARGB(255, 255, 204, 0),
+                  ),
                   animateOnLoad: true,
                   autoLoop: true,
                 ),
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 30),
             FadeTransition(
-              opacity: _fadeAnimation,
+              opacity: _animation,
               child: ScaleTransition(
-                scale: _scaleAnimation,
-                child: Image.asset('assets/splash_screen.png'),
+                scale: _animation,
+                child: Image.asset(
+                  'assets/splash_screen.png',
+                  width: 200,
+                  height: 200,
+                ),
+              ),
+            ),
+            const SizedBox(height: 40),
+            FadeTransition(
+              opacity: _animation,
+              child: const Text(
+                'Co. powered and managed by Alphacodes101',
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white70,
+                ),
               ),
             ),
           ],

@@ -8,8 +8,8 @@ class ImageCardWidget extends StatelessWidget {
   const ImageCardWidget({
     super.key,
     required this.cardItems,
-    this.cardWidth = 300,
-    this.cardHeight = 200,
+    this.cardWidth = 250,
+    this.cardHeight = 300,
   });
 
   @override
@@ -30,7 +30,7 @@ class ImageCardWidget extends StatelessWidget {
         clipBehavior: Clip.hardEdge,
         elevation: 5,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(10),
         ),
         child: InkWell(
           splashColor: Colors.blue.withAlpha(30),
@@ -58,6 +58,7 @@ class ImageCardWidget extends StatelessWidget {
                     },
                   ),
                 ),
+
                 // Title section
                 Expanded(
                   flex: 1,

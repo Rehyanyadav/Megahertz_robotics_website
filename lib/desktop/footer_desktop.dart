@@ -1,7 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:social_media_buttons/social_media_buttons.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class FooterDesktop extends StatelessWidget {
   const FooterDesktop({super.key});
+
+  void _launchURL(String url) async {
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+  Widget _socialMediaIcon({
+    required Widget icon,
+    required String url,
+  }) {
+    return InkWell(
+      child: icon,
+      onTap: () => _launchURL(url),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,19 +32,19 @@ class FooterDesktop extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Image.asset('assets/logo.png', width: 200, height: 200),
-          const Column(
+          Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 'QUICK LINKS',
                 style: TextStyle(
                   fontSize: 20.0,
                   color: Color.fromARGB(255, 255, 196, 0),
                 ),
               ),
-              SizedBox(height: 4),
-              TextButton(
+              const SizedBox(height: 4),
+              const TextButton(
                 onPressed: null,
                 child: Text(
                   'Wants to build projects',
@@ -34,10 +54,14 @@ class FooterDesktop extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 4),
+              const SizedBox(height: 4),
               TextButton(
-                onPressed: null,
-                child: Text(
+                onPressed: () {
+                  // Navigate to the participation and achievement section of the home page
+                  Navigator.of(context).pushNamed('/home',
+                      arguments: 'participation_achievement');
+                },
+                child: const Text(
                   'Participations/Achievements',
                   style: TextStyle(
                     color: Colors.white,
@@ -45,10 +69,20 @@ class FooterDesktop extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 4),
+              const SizedBox(height: 4),
               TextButton(
-                onPressed: null,
-                child: Text(
+                onPressed: () async {
+                  // Open link action
+                  final Uri url = Uri.parse(
+                      'https://alphacodes101.github.io/megahertz_ordering_system/');
+
+                  if (await canLaunchUrl(url)) {
+                    launchUrl(url);
+                  } else {
+                    throw 'Could not launch $url';
+                  }
+                },
+                child: const Text(
                   'Shop Components',
                   style: TextStyle(
                     color: Colors.white,
@@ -56,8 +90,8 @@ class FooterDesktop extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 4),
-              TextButton(
+              const SizedBox(height: 4),
+              const TextButton(
                 onPressed: null,
                 child: Text(
                   'Rentals',
@@ -115,24 +149,70 @@ class FooterDesktop extends StatelessWidget {
               ),
             ],
           ),
-          const Column(
+          Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 'GET IN TOUCH',
                 style: TextStyle(
                   fontSize: 20.0,
                   color: Color.fromARGB(255, 255, 196, 0),
                 ),
               ),
-              SizedBox(height: 8),
-              Text(
-                'megahertzrobotics@gmail.com',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16.0,
-                ),
+              const SizedBox(height: 8),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _socialMediaIcon(
+                    icon: const Icon(
+                      Icons.email,
+                      size: 30,
+                      color: Color.fromARGB(255, 255, 162, 0),
+                    ),
+                    url: "mailto:megahertzrobotics@gmail.com",
+                  ),
+                  const SizedBox(width: 10),
+                  _socialMediaIcon(
+                    icon: const SocialMediaButton.linkedin(
+                      url: "https://www.linkedin.com/company/alphacodes101/",
+                      size: 30,
+                      color: Color.fromARGB(255, 255, 162, 0),
+                    ),
+                    url: "https://www.linkedin.com/company/alphacodes101/",
+                  ),
+                  const SizedBox(width: 10),
+                  _socialMediaIcon(
+                    icon: const SocialMediaButton.facebook(
+                      url:
+                          "https://www.facebook.com/profile.php?id=100077276373410&mibextid=JRoKGi",
+                      size: 30,
+                      color: Color.fromARGB(255, 255, 162, 0),
+                    ),
+                    url:
+                        "https://www.facebook.com/profile.php?id=100077276373410&mibextid=JRoKGi",
+                  ),
+                  const SizedBox(width: 10),
+                  _socialMediaIcon(
+                    icon: const SocialMediaButton.youtube(
+                      url: "https://www.youtube.com/@alphacodes8618",
+                      size: 30,
+                      color: Color.fromARGB(255, 255, 162, 0),
+                    ),
+                    url: "https://www.youtube.com/@alphacodes8618",
+                  ),
+                  const SizedBox(width: 10),
+                  _socialMediaIcon(
+                    icon: const SocialMediaButton.instagram(
+                      url: "https://www.youtube.com/@alphacodes8618",
+                      size: 30,
+                      color: Color.fromARGB(255, 255, 162, 0),
+                    ),
+                    url: "https://www.youtube.com/@alphacodes8618",
+                  ),
+                  const SizedBox(width: 10),
+                ],
               ),
             ],
           ),

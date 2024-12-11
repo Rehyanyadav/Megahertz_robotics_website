@@ -1,25 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ThumbnailCard extends StatelessWidget {
   final String title;
-  final String subtitle;
+
   final String description;
   final String imagePath;
-  final VoidCallback? onAction1;
-  final VoidCallback? onAction2;
-  final String action1Text;
-  final String action2Text;
 
   const ThumbnailCard({
     super.key,
     this.title = 'Card Title',
-    this.subtitle = 'Secondary Text',
     this.description = 'Default description.',
     required this.imagePath,
-    this.onAction1,
-    this.onAction2,
-    this.action1Text = 'ACTION 1',
-    this.action2Text = 'ACTION 2',
   });
 
   @override
@@ -34,35 +26,50 @@ class ThumbnailCard extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.arrow_drop_down_circle),
               title: Text(title),
-              subtitle: Text(
-                subtitle,
-                style: TextStyle(color: Colors.black.withOpacity(0.6)),
-              ),
             ),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(
                 description,
-                style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.black.withOpacity(0.6),
+                    fontWeight: FontWeight.bold),
               ),
             ),
             OverflowBar(
               alignment: MainAxisAlignment.start,
               children: [
-                TextButton(
-                  style: TextButton.styleFrom(
-                    foregroundColor: const Color(0xFF6200EE),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                          color: const Color.fromARGB(255, 255, 187, 0)),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: TextButton(
+                      style: TextButton.styleFrom(
+                        foregroundColor: const Color.fromARGB(255, 255, 187, 0),
+                      ),
+                      onPressed: () async {
+                        // Open link action
+                        final Uri url =
+                            Uri.parse('https://www.youtube.com/c/TechieLagan');
+                        // ignore: deprecated_member_use
+                        if (await canLaunchUrl(url)) {
+                          launchUrl(url);
+                        } else {
+                          throw 'Could not launch $url';
+                        }
+                      },
+                      child: const Text(
+                        'Watch Now ',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
                   ),
-                  onPressed: onAction1,
-                  child: Text(action1Text),
-                ),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    foregroundColor: const Color(0xFF6200EE),
-                  ),
-                  onPressed: onAction2,
-                  child: Text(action2Text),
-                ),
+                )
               ],
             ),
             Image.asset(imagePath),

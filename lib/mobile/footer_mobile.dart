@@ -1,13 +1,30 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:social_media_buttons/social_media_button.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-class FooterMobile extends StatefulWidget {
+class FooterMobile extends StatelessWidget {
   const FooterMobile({super.key});
+  void _launchURL(String url) async {
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 
-  @override
-  State<FooterMobile> createState() => _FooterMobileState();
-}
+  Widget _socialMediaIcon({
+    required Widget icon,
+    required String url,
+  }) {
+    return InkWell(
+      child: icon,
+      onTap: () => _launchURL(url),
+    );
+  }
 
-class _FooterMobileState extends State<FooterMobile> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -43,9 +60,19 @@ class _FooterMobileState extends State<FooterMobile> {
           ),
         ),
         const SizedBox(height: 4),
-        const TextButton(
-          onPressed: null,
-          child: Text(
+        TextButton(
+          onPressed: () async {
+            // Open link action
+            final Uri url = Uri.parse(
+                'https://alphacodes101.github.io/megahertz_ordering_system/');
+
+            if (await canLaunch(url.toString())) {
+              launch(url.toString());
+            } else {
+              throw 'Could not launch $url';
+            }
+          },
+          child: const Text(
             'Shop Components',
             style: TextStyle(
               color: Colors.white,
@@ -122,6 +149,51 @@ class _FooterMobileState extends State<FooterMobile> {
           ),
         ),
         const SizedBox(height: 20),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const SizedBox(width: 20),
+            const SizedBox(width: 10),
+            _socialMediaIcon(
+              icon: const SocialMediaButton.linkedin(
+                url: "https://www.linkedin.com/company/alphacodes101/",
+                size: 30,
+                color: Color.fromARGB(255, 255, 162, 0),
+              ),
+              url: "https://www.linkedin.com/company/alphacodes101/",
+            ),
+            const SizedBox(width: 10),
+            _socialMediaIcon(
+              icon: const SocialMediaButton.facebook(
+                url:
+                    "https://www.facebook.com/profile.php?id=100077276373410&mibextid=JRoKGi",
+                size: 30,
+                color: Color.fromARGB(255, 255, 162, 0),
+              ),
+              url:
+                  "https://www.facebook.com/profile.php?id=100077276373410&mibextid=JRoKGi",
+            ),
+            const SizedBox(width: 10),
+            _socialMediaIcon(
+              icon: const SocialMediaButton.youtube(
+                url: "https://www.youtube.com/@alphacodes8618",
+                size: 30,
+                color: Color.fromARGB(255, 255, 162, 0),
+              ),
+              url: "https://www.youtube.com/@alphacodes8618",
+            ),
+            const SizedBox(width: 10),
+            _socialMediaIcon(
+              icon: const Icon(
+                FontAwesomeIcons.instagram,
+                color: Color.fromARGB(255, 255, 162, 0),
+                size: 30,
+              ),
+              url: '',
+            ),
+            const SizedBox(width: 10),
+          ],
+        ),
       ],
     );
   }

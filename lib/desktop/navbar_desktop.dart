@@ -1,5 +1,8 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class NavbarDesktop extends StatefulWidget {
   const NavbarDesktop({super.key});
@@ -9,23 +12,6 @@ class NavbarDesktop extends StatefulWidget {
 }
 
 class _NavbarDesktopState extends State<NavbarDesktop> {
-  var colorizeColors = [
-    Colors.purple,
-    Colors.blue,
-    const Color.fromARGB(255, 92, 59, 255),
-    const Color.fromARGB(255, 54, 231, 244),
-  ];
-
-  TextStyle colorizeTextStyle = const TextStyle(
-    fontSize: 40.0,
-    fontFamily: 'Horizon',
-  );
-
-  TextStyle smallText = const TextStyle(
-    fontSize: 25.0,
-    fontFamily: 'Horizon',
-  );
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -37,7 +23,7 @@ class _NavbarDesktopState extends State<NavbarDesktop> {
           Image.asset(
             'assets/logo.png',
             width: 200.0, // Set the desired width
-            height: 200.0, // Set the desired height
+            height: 500.0, // Set the desired height
           ),
           const Spacer(),
           const Spacer(),
@@ -46,7 +32,17 @@ class _NavbarDesktopState extends State<NavbarDesktop> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 TextButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      // Open link action
+                      final Uri url = Uri.parse(
+                          'https://alphacodes101.github.io/megahertz_ordering_system/');
+
+                      if (await canLaunch(url.toString())) {
+                        launch(url.toString());
+                      } else {
+                        throw 'Could not launch $url';
+                      }
+                    },
                     child: const Text(
                       'Buy Products',
                       style: TextStyle(

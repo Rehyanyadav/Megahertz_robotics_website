@@ -52,7 +52,7 @@ class _TestimonialCarouselState extends State<TestimonialCarousel> {
             return _buildTestimonialCard(testimonial, index);
           },
           options: CarouselOptions(
-            height: 450,
+            height: 500,
             enlargeCenterPage: true,
             autoPlay: true,
             aspectRatio: 16 / 9,
@@ -94,145 +94,6 @@ class _TestimonialCarouselState extends State<TestimonialCarousel> {
     );
   }
 
-//   Widget _buildTestimonialCard(Testimonial testimonial, int index) {
-//     return Container(
-//       margin: const EdgeInsets.symmetric(horizontal: 10),
-//       decoration: BoxDecoration(
-//         gradient: LinearGradient(
-//           begin: Alignment.topLeft,
-//           end: Alignment.bottomRight,
-//           colors: [
-//             Colors.white,
-//             const Color.fromARGB(255, 255, 196, 0).withOpacity(0.1),
-//           ],
-//         ),
-//         borderRadius: BorderRadius.circular(20),
-//         boxShadow: [
-//           BoxShadow(
-//             color: const Color.fromARGB(255, 255, 208, 0).withOpacity(0.2),
-//             spreadRadius: 3,
-//             blurRadius: 10,
-//             offset: const Offset(0, 5),
-//           ),
-//         ],
-//       ),
-//       child: Stack(
-//         children: [
-//           // Background Wave Design
-//           Positioned(
-//             top: -50,
-//             right: -50,
-//             child: Opacity(
-//               opacity: 0.2,
-//               child: Transform.rotate(
-//                 angle: 0.5,
-//                 child: Container(
-//                   width: 200,
-//                   height: 200,
-//                   decoration: BoxDecoration(
-//                     color: Colors.deepPurple.withOpacity(0.1),
-//                     borderRadius: BorderRadius.circular(100),
-//                   ),
-//                 ),
-//               ),
-//             ),
-//           ),
-//           Padding(
-//             padding: const EdgeInsets.all(20.0),
-//             child: Column(
-//               mainAxisAlignment: MainAxisAlignment.center,
-//               children: [
-//                 // Profile Image with Unique Border
-//                 Container(
-//                   decoration: BoxDecoration(
-//                     shape: BoxShape.circle,
-//                     border: Border.all(
-//                       color:
-//                           const Color.fromARGB(255, 5, 5, 5).withOpacity(0.5),
-//                       width: 4,
-//                     ),
-//                     boxShadow: [
-//                       BoxShadow(
-//                         color:
-//                             const Color.fromARGB(255, 0, 0, 0).withOpacity(0.2),
-//                         blurRadius: 10,
-//                         offset: const Offset(0, 5),
-//                       ),
-//                     ],
-//                   ),
-//                   child: CircleAvatar(
-//                     radius: 60,
-//                     backgroundImage: AssetImage(testimonial.imageAsset),
-//                   ),
-//                 ),
-//                 const SizedBox(height: 20),
-
-//                 // Quote with Innovative Design
-//                 Container(
-//                   padding:
-//                       const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-//                   decoration: BoxDecoration(
-//                     color: Colors.deepPurple.withOpacity(0.05),
-//                     borderRadius: BorderRadius.circular(10),
-//                   ),
-//                   child: Row(
-//                     mainAxisSize: MainAxisSize.min,
-//                     children: [
-//                       const Icon(
-//                         Icons.format_quote_rounded,
-//                         color: Colors.deepPurple,
-//                         size: 30,
-//                       ),
-//                       Expanded(
-//                         child: Text(
-//                           testimonial.comment,
-//                           style: const TextStyle(
-//                             fontSize: 16,
-//                             color: Colors.black87,
-//                             fontStyle: FontStyle.italic,
-//                           ),
-//                           textAlign: TextAlign.center,
-//                           maxLines: 3,
-//                           overflow: TextOverflow.ellipsis,
-//                         ),
-//                       ),
-//                       const Icon(
-//                         Icons.format_quote_rounded,
-//                         color: Colors.deepPurple,
-//                         size: 30,
-//                       ),
-//                     ],
-//                   ),
-//                 ),
-//                 const SizedBox(height: 20),
-
-//                 // Name and Position with Modern Typography
-//                 Text(
-//                   testimonial.name,
-//                   style: const TextStyle(
-//                     fontSize: 20,
-//                     fontWeight: FontWeight.w700,
-//                     color: Color.fromARGB(255, 0, 0, 0),
-//                     letterSpacing: 1.1,
-//                   ),
-//                 ),
-//                 Text(
-//                   testimonial.position,
-//                   style: const TextStyle(
-//                     fontSize: 14,
-//                     color: Color.fromARGB(255, 0, 0, 0),
-//                     fontStyle: FontStyle.italic,
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
-
   Widget _buildTestimonialCard(Testimonial testimonial, int index) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 10),
@@ -248,7 +109,7 @@ class _TestimonialCarouselState extends State<TestimonialCarousel> {
         borderRadius: BorderRadius.circular(30),
         boxShadow: [
           BoxShadow(
-            color: const Color.fromARGB(255, 255, 255, 255).withOpacity(1),
+            color: const Color.fromARGB(255, 0, 0, 0).withOpacity(1),
             spreadRadius: 2,
             blurRadius: 10,
             offset: const Offset(1, 1),
@@ -372,6 +233,7 @@ class _TestimonialCarouselState extends State<TestimonialCarousel> {
                     if (await canLaunchUrl(url)) {
                       await launchUrl(url);
                     } else {
+                      // ignore: use_build_context_synchronously
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text(

@@ -74,7 +74,7 @@ class _NavbarMobileTabState extends State<NavbarMobileTab>
       margin: const EdgeInsets.fromLTRB(40, 5, 20, 5),
       child: Row(
         children: [
-          Image.asset('assets/logo.png', width: 100.0, height: 300.0),
+          Image.asset('assets/logo.png', width: 100.0, height: 500.0),
           const Spacer(),
           AnimatedBuilder(
             animation: _animation,

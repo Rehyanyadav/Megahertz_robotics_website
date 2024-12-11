@@ -1,173 +1,253 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:megahertz_robotics/mobile/carisoule_for_about.dart';
 
-class AboutSectionMobTab extends StatelessWidget {
-  const AboutSectionMobTab({super.key});
+class CarouselTimeline extends StatefulWidget {
+  final List<TimelineEvent> events;
+  final int itemsPerPage;
 
-  // Static constants for reused values
-  static const _animationDuration = Duration(seconds: 2);
-  static const _shimmerDuration = Duration(seconds: 3);
-  static const _textStyle = TextStyle(
-    fontSize: 18,
-    color: Color.fromARGB(255, 255, 187, 0),
-    shadows: [
-      Shadow(
-        blurRadius: 7.0,
-        color: Colors.white,
-        offset: Offset.zero,
-      ),
-    ],
-  );
-
-  // Memoized carousel items
-  static final _carouselItems = [
-    _buildCarouselImage('assets/aboutus/aboutus1.png'),
-    _buildCarouselImageWithShimmer('assets/aboutus/aboutus2.png'),
-    _buildCarouselImageWithShimmer('assets/aboutus/aboutus0.png'),
-  ];
+  const CarouselTimeline({
+    super.key,
+    required this.events,
+    this.itemsPerPage = 3, // Default to 3 items per carousel page
+  });
 
   @override
-  Widget build(BuildContext context) {
-    return const ColoredBox(
-      color: Colors.black,
-      child: SingleChildScrollView(
-        // Added for better performance with long content
-        child: Column(
-          children: [
-            _HeaderSection(),
-            _CarouselSection(),
-          ],
-        ),
-      ),
-    );
-  }
-
-  // Extracted to separate widgets for better performance
-  static Widget _buildCarouselImage(String assetPath) {
-    return Center(
-      child: Image.asset(
-        assetPath,
-        // Added image optimization parameters
-        cacheWidth: 800, // Adjust based on your needs
-        filterQuality: FilterQuality.medium,
-      ),
-    );
-  }
-
-  static Widget _buildCarouselImageWithShimmer(String assetPath) {
-    return Center(
-      child: Image.asset(
-        assetPath,
-        cacheWidth: 800,
-        filterQuality: FilterQuality.medium,
-      ).animate().shimmer(
-            color: Colors.amber,
-            duration: _shimmerDuration,
-          ),
-    );
-  }
+  State<CarouselTimeline> createState() => _CarouselTimelineState();
 }
 
-// Separated into a dedicated widget for better performance
-class _HeaderSection extends StatelessWidget {
-  const _HeaderSection();
+class _CarouselTimelineState extends State<CarouselTimeline> {
+  late PageController _pageController;
+  late Timer _timer;
+  int _currentPage = 0;
 
   @override
-  Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(vertical: 20),
-      child: Column(
-        children: [
-          _AnimatedLogo(),
-          _AnimatedText(),
-        ],
-      ),
-    );
+  void initState() {
+    super.initState();
+    _pageController = PageController(initialPage: _currentPage);
+
+    // Auto-scroll timer
+    _timer = Timer.periodic(const Duration(seconds: 5), (timer) {
+      if (_currentPage < _getTotalPages() - 1) {
+        _currentPage++;
+      } else {
+        _currentPage = 0; // Reset to the first page
+      }
+      _pageController.animateToPage(
+        _currentPage,
+        duration: const Duration(milliseconds: 800),
+        curve: Curves.easeInOut,
+      );
+    });
   }
-}
-
-class _AnimatedLogo extends StatelessWidget {
-  const _AnimatedLogo();
 
   @override
-  Widget build(BuildContext context) {
-    return Image.asset(
-      'assets/aboutus/aboutus03.png',
-      width: 250,
-      // Added image optimization parameters
-      cacheWidth: 500,
-      filterQuality: FilterQuality.medium,
-    )
-        .animate()
-        .slideX(
-          duration: AboutSectionMobTab._animationDuration,
-          curve: Curves.fastLinearToSlowEaseIn,
-        )
-        .shimmer(
-          color: Colors.amber,
-          duration: AboutSectionMobTab._shimmerDuration,
-        );
+  void dispose() {
+    _timer.cancel();
+    _pageController.dispose();
+    super.dispose();
   }
-}
 
-class _AnimatedText extends StatelessWidget {
-  const _AnimatedText();
+  int _getTotalPages() {
+    return (widget.events.length / widget.itemsPerPage).ceil();
+  }
+
+  List<List<TimelineEvent>> _getEventSections() {
+    List<List<TimelineEvent>> sections = [];
+    for (int i = 0; i < widget.events.length; i += widget.itemsPerPage) {
+      sections.add(widget.events.sublist(
+        i,
+        i + widget.itemsPerPage > widget.events.length
+            ? widget.events.length
+            : i + widget.itemsPerPage,
+      ));
+    }
+    return sections;
+  }
 
   @override
   Widget build(BuildContext context) {
+    final eventSections = _getEventSections();
+
     return SizedBox(
-      width: 300,
-      height: 50,
-      child: DefaultTextStyle(
-        style: AboutSectionMobTab._textStyle,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            _buildAnimatedTextKit('Build your'),
-            const SizedBox(width: 10),
-            _buildAnimatedTextKit('Custom Products'),
-            _buildAnimatedTextKit('with us'),
-          ],
-        ).animate().scale(
-              duration: AboutSectionMobTab._animationDuration,
-              curve: Curves.fastOutSlowIn,
-            ),
+      height: 400, // Fixed height for the carousel
+      child: PageView.builder(
+        controller: _pageController,
+        itemCount: eventSections.length,
+        onPageChanged: (index) {
+          setState(() {
+            _currentPage = index;
+          });
+        },
+        itemBuilder: (context, index) {
+          return TimelineSection(events: eventSections[index]);
+        },
       ),
-    );
-  }
-
-  Widget _buildAnimatedTextKit(String text) {
-    return AnimatedTextKit(
-      repeatForever: true,
-      animatedTexts: [FlickerAnimatedText(text)],
     );
   }
 }
 
-class _CarouselSection extends StatelessWidget {
-  const _CarouselSection();
+class TimelineEvent {
+  final String year;
+  final String description;
+
+  TimelineEvent({required this.year, required this.description});
+}
+
+class TimelineSection extends StatelessWidget {
+  final List<TimelineEvent> events;
+
+  const TimelineSection({super.key, required this.events});
 
   @override
   Widget build(BuildContext context) {
-    return AboutUsCarisoule(
-      items: AboutSectionMobTab._carouselItems,
-      aspectRatio: 16 / 9,
-      autoPlay: true,
-    )
-        .animate()
-        .slideX(
-          duration: AboutSectionMobTab._animationDuration,
-          curve: Curves.fastOutSlowIn,
-        )
-        .scale(
-          duration: AboutSectionMobTab._animationDuration,
-          curve: Curves.fastOutSlowIn,
-        )
-        .shimmer(
-          color: Colors.amber,
-          duration: AboutSectionMobTab._shimmerDuration,
+    return ListView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: events.length,
+      itemBuilder: (context, index) {
+        return TimelineTile(
+          event: events[index],
+          isLast: index == events.length - 1,
         );
+      },
+    );
+  }
+}
+
+class TimelineTile extends StatefulWidget {
+  final TimelineEvent event;
+  final bool isLast;
+
+  const TimelineTile({super.key, required this.event, required this.isLast});
+
+  @override
+  State<TimelineTile> createState() => _TimelineTileState();
+}
+
+class _TimelineTileState extends State<TimelineTile>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _blinkController;
+
+  @override
+  void initState() {
+    super.initState();
+    _blinkController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1000),
+    )..repeat(reverse: true);
+  }
+
+  @override
+  void dispose() {
+    _blinkController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return Padding(
+          padding: EdgeInsets.symmetric(
+            vertical: 16.0,
+            horizontal: constraints.maxWidth > 600 ? 48.0 : 16.0,
+          ),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // Column for Indicator and Connector Line
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  // Blinking Glowing Indicator
+                  FadeTransition(
+                    opacity:
+                        _blinkController.drive(Tween(begin: 0.5, end: 1.0)),
+                    child: ScaleTransition(
+                      scale:
+                          _blinkController.drive(Tween(begin: 0.9, end: 1.1)),
+                      child: Container(
+                        width: 20,
+                        height: 20,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          gradient: RadialGradient(
+                            colors: [
+                              Colors.yellow.shade700.withOpacity(0.8),
+                              Colors.yellow.shade700.withOpacity(0.5),
+                              Colors.transparent,
+                            ],
+                            stops: const [0.2, 0.5, 1.0],
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.yellow.shade700.withOpacity(0.7),
+                              blurRadius: 20,
+                              spreadRadius: 3,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  if (!widget.isLast)
+                    // Glowing Connector Line
+                    Container(
+                      width: 2,
+                      height: constraints.maxWidth > 600 ? 80 : 60,
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            Colors.yellow.shade700.withOpacity(0.7),
+                            Colors.transparent,
+                          ],
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.yellow.shade700.withOpacity(0.5),
+                            blurRadius: 10,
+                            spreadRadius: 1,
+                          ),
+                        ],
+                      ),
+                    ),
+                ],
+              ),
+              const SizedBox(width: 16),
+              // Event Details
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      widget.event.year,
+                      style: TextStyle(
+                        fontSize: constraints.maxWidth > 600 ? 20 : 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      widget.event.description,
+                      style: TextStyle(
+                        fontSize: constraints.maxWidth > 600 ? 18 : 16,
+                        color: Colors.white70,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 }

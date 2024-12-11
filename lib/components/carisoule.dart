@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ResponsiveCarousel extends StatefulWidget {
   final List<Widget> items;
@@ -51,13 +50,13 @@ class _ResponsiveCarouselState extends State<ResponsiveCarousel> {
   void _nextPage() {
     if (_currentPage < widget.items.length - 1) {
       _pageController.nextPage(
-        duration: const Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 500),
         curve: widget.autoPlayCurve,
       );
     } else {
       _pageController.animateToPage(
         0,
-        duration: const Duration(milliseconds: 40),
+        duration: const Duration(milliseconds: 500),
         curve: widget.autoPlayCurve,
       );
     }
@@ -89,21 +88,62 @@ class _ResponsiveCarouselState extends State<ResponsiveCarousel> {
                   }
                 },
                 itemBuilder: (context, index) {
-                  return widget.items[index];
+                  return Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 8.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16.0),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.3),
+                          blurRadius: 10,
+                          offset: const Offset(0, 4),
+                        ),
+                      ],
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(16.0),
+                      child: Stack(
+                        fit: StackFit.expand,
+                        children: [
+                          widget.items[index],
+                          // Gradient overlay
+                          Container(
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: [
+                                  Colors.black.withOpacity(0.4),
+                                  Colors.transparent,
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
                 },
               ),
             ),
-            // Indicator dots
+            // Modern page indicator
             Padding(
               padding: const EdgeInsets.only(bottom: 16.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: List.generate(
                   widget.items.length,
-                  (index) => Container(
-                    width: 10.0,
-                    height: 10.0,
-                    margin: const EdgeInsets.symmetric(horizontal: 4.0),
+                  (index) => AnimatedContainer(
+                    duration: const Duration(milliseconds: 300),
+                    width: 12.0,
+                    height: 12.0,
+                    margin: const EdgeInsets.symmetric(horizontal: 6.0),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: _currentPage == index
+                          ? Colors.white
+                          : Colors.white.withOpacity(0.5),
+                    ),
                   ),
                 ),
               ),
@@ -130,7 +170,6 @@ class CarouselExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Responsive Carousel Demo')),
       body: ResponsiveCarousel(
         items: [
           Image.asset('assets/achivements_Participation_photos/image01.jpg'),

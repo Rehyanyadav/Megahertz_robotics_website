@@ -12,36 +12,31 @@ class ThumbnailRow extends StatelessWidget {
       child: Row(
         children: [
           ThumbnailCard(
-            imagePath: 'assets/youtube/pic01.png',
+            imagePath: 'assets/youtube/pic01.webp',
             title: 'MegaHertz Robotics',
             description:
                 'Music reactive LEDs || Sound sensor - Arduino Connections & Coding',
-            action1Text: 'Watch Now',
-            action2Text: 'Share',
           ),
+          SizedBox(width: 10),
           ThumbnailCard(
-            imagePath: 'assets/youtube/pic02.png',
+            imagePath: 'assets/youtube/pic02.webp',
             title: 'MegaHertz Robotics',
             description:
                 'How to make a wifi controlled car using Nodemcu ESP8266 and NEW Blynk App',
-            action1Text: 'Watch Now',
-            action2Text: 'Share',
           ),
+          SizedBox(width: 10),
           ThumbnailCard(
-            imagePath: 'assets/youtube/pic03.png',
+            imagePath: 'assets/youtube/pic03.webp',
             title: 'MegaHertz Robotics',
             description:
                 'My School Exhibition Project || Unmanned Surveillance Vehicle (U.S.V) ',
-            action1Text: 'Watch Now',
-            action2Text: 'Share',
           ),
+          SizedBox(width: 10),
           ThumbnailCard(
-            imagePath: 'assets/youtube/pic04.png',
+            imagePath: 'assets/youtube/pic04.webp',
             title: 'MegaHertz Robotics',
             description:
                 'GAS Leakage Detector using Arduino Nano / UNO || MQ5 Sensor ',
-            action1Text: 'Watch Now',
-            action2Text: 'Share',
           ),
         ],
       ),

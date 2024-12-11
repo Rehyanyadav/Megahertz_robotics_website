@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:social_media_buttons/social_media_buttons.dart';
@@ -122,16 +124,41 @@ class DrawerMobileTab extends StatelessWidget {
                         color: Colors.orangeAccent,
                         size: 30,
                       ),
-                      url:
-                          '',
+                      url: '',
                     ),
                     const SizedBox(width: 10),
                   ],
                 ),
                 const SizedBox(height: 20),
-                const Text(
-                  'Co.powered by AlphaCodes101',
-                  style: TextStyle(color: Colors.white, fontSize: 15),
+                Column(
+                  children: [
+                    const Text(
+                      'Co.powered by AlphaCodes101',
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 0, 98, 255),
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () async {
+                        const url =
+                            'https://alphacodes101.github.io/alphacodes.github.io/';
+                        if (await canLaunch(url)) {
+                          await launch(url);
+                        } else {
+                          throw 'Could not launch $url';
+                        }
+                      },
+                      child: const Text(
+                        'Alphacodes101',
+                        style: TextStyle(
+                            color: Color.fromARGB(255, 0, 98, 255),
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    )
+                  ],
                 ),
               ],
             ),

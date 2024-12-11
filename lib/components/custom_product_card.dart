@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:megahertz_robotics/components/cards.dart';
 
 import 'Custom_Card/custom_card.dart';
 
@@ -17,8 +16,7 @@ class CustomProductsCards extends StatelessWidget {
               CustomImageCardWidget(
                 cardItems: [
                   CustomCardItem(
-                      imagePath:
-                          'assets/custom_project/custom_lith_battery.png',
+                      imagePath: 'assets/custom_project/custom batterys.png',
                       title: 'Custom Lithium Ion Battery Pack',
                       onTap: () {/* Optional tap handler */}),
                   // Add more CardItems as needed

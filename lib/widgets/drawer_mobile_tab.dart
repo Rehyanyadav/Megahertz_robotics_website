@@ -61,9 +61,19 @@ class DrawerMobileTab extends StatelessWidget {
                 _buildMenuItem(
                   icon: Icons.shopping_cart_outlined,
                   title: 'Buy Products',
-                  onTap: () {
+                  onTap: () 
                     // Navigation logic
-                  },
+                  async {
+                  // Open link action
+                  final Uri url = Uri.parse(
+                      'https://alphacodes101.github.io/megahertz_ordering_system/');
+
+                  if (await canLaunchUrl(url)) {
+                    launchUrl(url);
+                  } else {
+                    throw 'Could not launch $url';
+                  }
+                },
                 ),
 
                 _buildMenuItem(

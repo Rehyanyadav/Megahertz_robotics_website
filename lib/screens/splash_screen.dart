@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:google_fonts/google_fonts.dart';
-import '../widget/hypertext.dart';
+import '../widgets/hypertext.dart';
 import 'home_page.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -64,7 +64,7 @@ class _SplashScreenState extends State<SplashScreen>
                 child: HyperText(
                   text: "MegaHertz Robotics",
                   style: GoogleFonts.orbitron(
-                    fontSize: 32,
+                    fontSize: 30,
                     fontWeight: FontWeight.bold,
                     color: const Color.fromARGB(255, 255, 204, 0),
                   ),

@@ -43,12 +43,12 @@ class _NavbarDesktopState extends State<NavbarDesktop> {
                         throw 'Could not launch $url';
                       }
                     },
-                    child: const Text(
+                    child: Text(
                       'Buy Products',
                       style: TextStyle(
-                        fontSize: 25.0,
-                        color: Color.fromARGB(255, 255, 196, 0),
-                      ),
+                          fontSize: 25.0,
+                          color: const Color.fromARGB(255, 255, 196, 0),
+                          fontStyle: GoogleFonts.agbalumo().fontStyle),
                     )),
                 TextButton(
                     onPressed: () {},

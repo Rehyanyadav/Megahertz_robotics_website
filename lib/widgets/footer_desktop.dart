@@ -17,9 +17,16 @@ class FooterDesktop extends StatelessWidget {
     required Widget icon,
     required String url,
   }) {
-    return InkWell(
-      child: icon,
-      onTap: () => _launchURL(url),
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(5),
+        color: Colors.black,
+        border: Border.all(color: Colors.yellow),
+      ),
+      child: InkWell(
+        child: icon,
+        onTap: () => _launchURL(url),
+      ),
     );
   }
 
@@ -168,7 +175,7 @@ class FooterDesktop extends StatelessWidget {
                   _socialMediaIcon(
                     icon: const Icon(
                       Icons.email,
-                      size: 30,
+                      size: 45,
                       color: Color.fromARGB(255, 255, 162, 0),
                     ),
                     url: "mailto:megahertzrobotics@gmail.com",
@@ -176,11 +183,12 @@ class FooterDesktop extends StatelessWidget {
                   const SizedBox(width: 10),
                   _socialMediaIcon(
                     icon: const SocialMediaButton.linkedin(
-                      url: "https://www.linkedin.com/company/alphacodes101/",
+                      url:
+                          "https://www.linkedin.com/company/megahertz-robotics",
                       size: 30,
                       color: Color.fromARGB(255, 255, 162, 0),
                     ),
-                    url: "https://www.linkedin.com/company/alphacodes101/",
+                    url: "https://www.linkedin.com/company/megahertz-robotics",
                   ),
                   const SizedBox(width: 10),
                   _socialMediaIcon(
@@ -196,20 +204,22 @@ class FooterDesktop extends StatelessWidget {
                   const SizedBox(width: 10),
                   _socialMediaIcon(
                     icon: const SocialMediaButton.youtube(
-                      url: "https://www.youtube.com/@alphacodes8618",
+                      url: "https://www.youtube.com/c/TechieLagan",
                       size: 30,
                       color: Color.fromARGB(255, 255, 162, 0),
                     ),
-                    url: "https://www.youtube.com/@alphacodes8618",
+                    url: "https://www.youtube.com/c/TechieLagan",
                   ),
                   const SizedBox(width: 10),
                   _socialMediaIcon(
                     icon: const SocialMediaButton.instagram(
-                      url: "https://www.youtube.com/@alphacodes8618",
+                      url:
+                          "https://www.instagram.com/megahertz_robotics/p/DCxAuknTHtZ/",
                       size: 30,
                       color: Color.fromARGB(255, 255, 162, 0),
                     ),
-                    url: "https://www.youtube.com/@alphacodes8618",
+                    url:
+                        "https://www.instagram.com/megahertz_robotics/p/DCxAuknTHtZ/",
                   ),
                   const SizedBox(width: 10),
                 ],

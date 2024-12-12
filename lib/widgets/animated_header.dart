@@ -15,10 +15,10 @@ class BorderBeam extends StatefulWidget {
     super.key,
     required this.child,
     this.duration = 15,
-    this.borderWidth = 1.7,
-    this.colorFrom = const Color(0xFFFFAA40),
-    this.colorTo = const Color(0xFF9C40FF),
-    this.staticBorderColor = const Color(0xFFCCCCCC),
+    this.borderWidth = 1.5,
+    this.colorFrom = const Color.fromARGB(255, 132, 0, 255),
+    this.colorTo = const Color.fromARGB(255, 225, 0, 255),
+    this.staticBorderColor = const Color.fromARGB(255, 0, 195, 255),
     this.borderRadius = const BorderRadius.all(Radius.circular(12)),
     this.padding = EdgeInsets.zero,
   });
@@ -39,8 +39,9 @@ class _BorderBeamState extends State<BorderBeam>
     _controller = AnimationController(
       duration: Duration(seconds: widget.duration.toInt()),
       vsync: this,
-    )..repeat();
+    );
     _animation = Tween<double>(begin: 0, end: 1).animate(_controller);
+    _controller.repeat();
   }
 
   @override
@@ -103,11 +104,13 @@ class BorderBeamPainter extends CustomPainter {
     canvas.drawRRect(rrect, staticPaint);
 
     final path = Path()..addRRect(rrect);
+
     final pathMetrics = path.computeMetrics().first;
     final pathLength = pathMetrics.length;
 
-    // Animation progress
-    final start = (progress * pathLength) % pathLength;
+    // Adjust the animation to prevent the jump
+    final animationProgress = progress % 1.0;
+    final start = animationProgress * pathLength;
     final end = (start + pathLength / 4) % pathLength;
 
     Path extractPath;
@@ -118,7 +121,7 @@ class BorderBeamPainter extends CustomPainter {
       extractPath.addPath(pathMetrics.extractPath(0, end), Offset.zero);
     }
 
-    // Gradient calculation
+    // Calculate gradient start and end points
     final gradientStart =
         pathMetrics.getTangentForOffset(start)?.position ?? Offset.zero;
     final gradientEnd = pathMetrics
@@ -128,17 +131,18 @@ class BorderBeamPainter extends CustomPainter {
 
     final paint = Paint()
       ..style = PaintingStyle.stroke
-      ..strokeWidth = borderWidth
-      ..shader = ui.Gradient.linear(
-        gradientStart,
-        gradientEnd,
-        [
-          colorTo.withOpacity(0.0), // Transparent color for fading effect
-          colorTo,
-          colorFrom,
-        ],
-        [0.0, 0.3, 1.0],
-      );
+      ..strokeWidth = borderWidth;
+
+    paint.shader = ui.Gradient.linear(
+      gradientStart,
+      gradientEnd,
+      [
+        colorTo.withOpacity(0.0), // Transparent color for fading effect
+        colorTo,
+        colorFrom,
+      ],
+      [0.0, 0.3, 1.0],
+    );
 
     canvas.drawPath(extractPath, paint);
   }

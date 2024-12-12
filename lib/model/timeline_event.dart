@@ -1,4 +1,4 @@
-import '../mobile/about_section_mobile.dart';
+import '../widgets/about_section_mobile.dart';
 
 final List<TimelineEvent> timelineEvents = [
   TimelineEvent(

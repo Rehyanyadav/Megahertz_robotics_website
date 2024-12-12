@@ -1,5 +1,5 @@
 
-import '../components/member.dart';
+import '../widgets/member.dart';
 
 final List<Testimonial> testimonials = [
   Testimonial(

@@ -20,23 +20,6 @@ class _NavbarMobileTabState extends State<NavbarMobileTab>
   late Animation<double> _animation;
   bool isMenuOpen = false;
 
-  var colorizeColors = [
-    Colors.purple,
-    Colors.blue,
-    const Color.fromARGB(255, 92, 59, 255),
-    const Color.fromARGB(255, 54, 231, 244),
-  ];
-
-  TextStyle colorizeTextStyle = const TextStyle(
-    fontSize: 40.0,
-    fontFamily: 'Horizon',
-  );
-
-  TextStyle smallText = const TextStyle(
-    fontSize: 25.0,
-    fontFamily: 'Horizon',
-  );
-
   @override
   void initState() {
     super.initState();

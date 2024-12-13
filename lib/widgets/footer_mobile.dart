@@ -38,27 +38,6 @@ class FooterMobile extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 4),
-        const TextButton(
-          onPressed: null,
-          child: Text(
-            'Wants to build projects',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 16.0,
-            ),
-          ),
-        ),
-        const SizedBox(height: 4),
-        const TextButton(
-          onPressed: null,
-          child: Text(
-            'Participations/Achievements',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 16.0,
-            ),
-          ),
-        ),
         const SizedBox(height: 4),
         TextButton(
           onPressed: () async {
@@ -74,6 +53,16 @@ class FooterMobile extends StatelessWidget {
           },
           child: const Text(
             'Shop Components',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 16.0,
+            ),
+          ),
+        ),
+        const TextButton(
+          onPressed: null,
+          child: Text(
+            'Wants to build projects',
             style: TextStyle(
               color: Colors.white,
               fontSize: 16.0,
@@ -140,27 +129,25 @@ class FooterMobile extends StatelessWidget {
             color: Color.fromARGB(255, 255, 196, 0),
           ),
         ),
-        const SizedBox(height: 8),
-        const Text(
-          'megahertzrobotics@gmail.com',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 16.0,
-          ),
-        ),
-        const SizedBox(height: 20),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const SizedBox(width: 20),
+            _socialMediaIcon(
+              icon: const Icon(
+                Icons.email,
+                size: 45,
+                color: Color.fromARGB(255, 255, 162, 0),
+              ),
+              url: "mailto:megahertzrobotics@gmail.com",
+            ),
             const SizedBox(width: 10),
             _socialMediaIcon(
               icon: const SocialMediaButton.linkedin(
-                url: "https://www.linkedin.com/company/alphacodes101/",
+                url: "https://www.linkedin.com/company/megahertz-robotics",
                 size: 30,
                 color: Color.fromARGB(255, 255, 162, 0),
               ),
-              url: "https://www.linkedin.com/company/alphacodes101/",
+              url: "https://www.linkedin.com/company/megahertz-robotics",
             ),
             const SizedBox(width: 10),
             _socialMediaIcon(
@@ -176,24 +163,26 @@ class FooterMobile extends StatelessWidget {
             const SizedBox(width: 10),
             _socialMediaIcon(
               icon: const SocialMediaButton.youtube(
-                url: "https://www.youtube.com/@alphacodes8618",
+                url: "https://www.youtube.com/c/TechieLagan",
                 size: 30,
                 color: Color.fromARGB(255, 255, 162, 0),
               ),
-              url: "https://www.youtube.com/@alphacodes8618",
+              url: "https://www.youtube.com/c/TechieLagan",
             ),
             const SizedBox(width: 10),
             _socialMediaIcon(
-              icon: const Icon(
-                FontAwesomeIcons.instagram,
-                color: Color.fromARGB(255, 255, 162, 0),
+              icon: const SocialMediaButton.instagram(
+                url:
+                    "https://www.instagram.com/megahertz_robotics/p/DCxAuknTHtZ/",
                 size: 30,
+                color: Color.fromARGB(255, 255, 162, 0),
               ),
-              url: '',
+              url:
+                  "https://www.instagram.com/megahertz_robotics/p/DCxAuknTHtZ/",
             ),
             const SizedBox(width: 10),
           ],
-        ),
+        )
       ],
     );
   }

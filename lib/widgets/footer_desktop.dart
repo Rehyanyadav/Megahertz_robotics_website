@@ -51,32 +51,6 @@ class FooterDesktop extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 4),
-              const TextButton(
-                onPressed: null,
-                child: Text(
-                  'Wants to build projects',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16.0,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 4),
-              TextButton(
-                onPressed: () {
-                  // Navigate to the participation and achievement section of the home page
-                  Navigator.of(context).pushNamed('/home',
-                      arguments: 'participation_achievement');
-                },
-                child: const Text(
-                  'Participations/Achievements',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16.0,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 4),
               TextButton(
                 onPressed: () async {
                   // Open link action
@@ -91,6 +65,17 @@ class FooterDesktop extends StatelessWidget {
                 },
                 child: const Text(
                   'Shop Components',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16.0,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 4),
+              const TextButton(
+                onPressed: null,
+                child: Text(
+                  'Wants to build projects',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 16.0,

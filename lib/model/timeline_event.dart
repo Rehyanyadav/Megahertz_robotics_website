@@ -4,23 +4,32 @@ final List<TimelineEvent> timelineEvents = [
   TimelineEvent(
       year: '24th Dec 2023',
       description:
-          'Company founded by Laganjeet Jena for events (Kreativity 2023).'),
-  TimelineEvent(year: '2024', description: 'Participated in KIIT Fest 2024.'),
+          "Participated in project expo ( KREATIVITY'23 ) oraganised by School of Electronics KIIT University."),
   TimelineEvent(
-      year: '2024', description: 'Participated in  Perception OUTR event.'),
-  TimelineEvent(year: '2024', description: 'Participated in IIT bhubaneswar.'),
-  TimelineEvent(year: '2024', description: 'Participated in SIH 2024'),
-  TimelineEvent(
-      year: '2024', description: 'Participated in Providence Ideathon 2024'),
-  TimelineEvent(
-      year: '2024',
+      year: '14 - 16 Feb 2024',
       description:
-          'Respresent our bots and participate in fest  Innovision NIT Rourkela  '),
+          'Participated in Line Follower & Bot Burnout events in KIIT Fest 2024.'),
   TimelineEvent(
-      year: '2024', description: 'Represent our Idea in KIIT KI 3 evenet'),
+      year: '10 - 12 March 2024',
+      description:
+          "Participated in Line Follower & Robo Race events in WISSENAIRE'24 ( Fest of IIT bhubaneswar )."),
   TimelineEvent(
-      year: '2024', description: 'Showcasing our Projects in Govt. event NSS '),
+      year: "18 - 20 March 2024",
+      description:
+          "Participated in  Line Follower & Robo Race events in Perception'24 ( Fest of OUTR Bhubaneswar )."),
   TimelineEvent(
-      year: '2024', description: 'Coming soon Electronics 2024 fest '),
-  TimelineEvent(year: '2024', description: 'Coming soon IIT KGP 2024 fest '),
+      year: '8 - 10 Nov 2024',
+      description:
+          "Participated in Death Race and Robo Race events in Innovision'24 (Fest of NIT Rourkela)"),
+  TimelineEvent(
+      year: '5 Dec 2024',
+      description:
+          "Participated in KI-3 Event (Ideation Category) organised by KIIT School of Electronics & Dean's Gold Club"),
+  TimelineEvent(
+      year: '6 Dec 2024',
+      description:
+          'Participated in Science Mela (District level Yuva Utsav) organised by NSS'),
+  TimelineEvent(
+      year: '24th Dec 2024',
+      description: "Launched the website of MegaHertz Robotics."),
 ];

@@ -1,10 +1,9 @@
-
 import '../widgets/member.dart';
 
 final List<Testimonial> testimonials = [
   Testimonial(
-    name: 'Laganjeet jena',
-    position: 'CEO, MegaHertz Robotics',
+    name: 'Laganjeet Jena',
+    position: 'Co-Founder',
     comment:
         "At Megahertz Robotics, we're shaping the future with cutting-edge robotics and electronics innovations.",
     imageAsset: 'assets/members/lagan.jpeg',
@@ -12,7 +11,7 @@ final List<Testimonial> testimonials = [
   ),
   Testimonial(
     name: 'Omm Sanjog Barik',
-    position: 'CTO',
+    position: 'Co-Founder',
     comment:
         " Driving technological excellence to create robotics solutions that redefine industries.",
     imageAsset: 'assets/members/ombarik.jpeg',
@@ -21,23 +20,23 @@ final List<Testimonial> testimonials = [
   ),
   Testimonial(
     name: 'Amrutanshu Nanda',
-    position: 'CFO',
+    position: 'Co-Founder',
     comment:
         "We strategically manage resources to fuel Megahertz Robotics' growth and innovation.",
     imageAsset: 'assets/members/amrutansh.jpeg',
     linkedinUrl: 'https://www.linkedin.com/in/johndoe/',
   ),
   Testimonial(
-    name: 'Rehyan yadav',
-    position: 'Tech Lead',
+    name: 'Rehyan Yadav',
+    position: 'Web Lead ',
     comment:
         ' Owner of @alphacodes101 Building seamless digital experiences to connect our innovations with the world.',
     imageAsset: 'assets/members/rehyan.jpeg',
     linkedinUrl: 'https://www.linkedin.com/in/rehyanyaduvanshi/',
   ),
   Testimonial(
-    name: 'Sujal',
-    position: 'Logistics',
+    name: 'Sujal Krishna',
+    position: 'Logistics Head',
     comment:
         'Ensuring efficient delivery and support for every project, every time. ',
     imageAsset: 'assets/members/sujal.jpeg',
@@ -45,7 +44,7 @@ final List<Testimonial> testimonials = [
   ),
   Testimonial(
     name: 'Som Raj',
-    position: 'Logistics',
+    position: 'Finance',
     comment:
         " Ensuring efficient delivery and support for every project, every time.",
     imageAsset: 'assets/members/som.jpeg',
@@ -53,22 +52,22 @@ final List<Testimonial> testimonials = [
   ),
   Testimonial(
     name: 'Riddhi khanna',
-    position: 'Marketing ',
+    position: 'Member ',
     comment: 'Social Media reach influencer.',
     imageAsset: 'assets/members/riddhi.jpeg',
     linkedinUrl: 'https://www.linkedin.com/in/johndoe/',
   ),
   Testimonial(
     name: 'Aman Kumar',
-    position: 'Common Member',
+    position: 'Member',
     comment:
         "Together, we innovate, collaborate, and push the boundaries of robotics and technology..",
     imageAsset: 'assets/members/aman.jpeg',
     linkedinUrl: 'nil',
   ),
   Testimonial(
-    name: 'TANMOY DAS',
-    position: 'Common Member',
+    name: 'Tanmoy Das',
+    position: 'Member',
     comment:
         "Together, we innovate, collaborate, and push the boundaries of robotics and technology..",
     imageAsset: 'assets/members/tanmoy.jpeg',
@@ -77,7 +76,7 @@ final List<Testimonial> testimonials = [
   ),
   Testimonial(
     name: 'Piyush Raj',
-    position: 'Common Member',
+    position: 'Member',
     comment:
         "Together, we innovate, collaborate, and push the boundaries of robotics and technology..",
     imageAsset: 'assets/members/piyush.jpeg',
@@ -85,7 +84,7 @@ final List<Testimonial> testimonials = [
   ),
   Testimonial(
     name: 'Shantanu Kumar',
-    position: 'Common Member',
+    position: 'Member',
     comment:
         "Together, we innovate, collaborate, and push the boundaries of robotics and technology..",
     imageAsset: 'assets/members/shantanu.jpeg',
@@ -93,7 +92,7 @@ final List<Testimonial> testimonials = [
   ),
   Testimonial(
     name: 'Tushar Ojha',
-    position: 'Common Member',
+    position: 'Member',
     comment:
         "Together, we innovate, collaborate, and push the boundaries of robotics and technology..",
     imageAsset: 'assets/members/tushar.jpeg',

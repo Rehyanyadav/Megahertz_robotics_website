@@ -64,7 +64,7 @@ class FooterDesktop extends StatelessWidget {
                   }
                 },
                 child: const Text(
-                  'Shop Components',
+                  'Buy Products',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 16.0,

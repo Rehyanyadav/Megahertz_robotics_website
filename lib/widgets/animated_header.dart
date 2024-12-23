@@ -4,23 +4,29 @@ import 'dart:ui' as ui;
 class BorderBeam extends StatefulWidget {
   final Widget child;
   final double duration;
-  final double borderWidth;
+  final double borderWidth; // Allow dynamic border width
   final Color colorFrom;
   final Color colorTo;
   final Color staticBorderColor;
   final BorderRadius borderRadius;
   final EdgeInsetsGeometry padding;
+  final double height;
+  final double width; // Width of the BorderBeam widget
+  final double textSize;
 
   const BorderBeam({
     super.key,
     required this.child,
     this.duration = 15,
-    this.borderWidth = 1.5,
+    this.borderWidth = 1,
     this.colorFrom = const Color.fromARGB(255, 132, 0, 255),
     this.colorTo = const Color.fromARGB(255, 225, 0, 255),
     this.staticBorderColor = const Color.fromARGB(255, 0, 195, 255),
     this.borderRadius = const BorderRadius.all(Radius.circular(12)),
     this.padding = EdgeInsets.zero,
+    this.height = 100,
+    this.width = 1,
+    this.textSize = 15,
   });
 
   @override
@@ -52,24 +58,31 @@ class _BorderBeamState extends State<BorderBeam>
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: _animation,
-      builder: (context, child) {
-        return CustomPaint(
-          painter: BorderBeamPainter(
-            progress: _animation.value,
-            borderWidth: widget.borderWidth,
-            colorFrom: widget.colorFrom,
-            colorTo: widget.colorTo,
-            staticBorderColor: widget.staticBorderColor,
-            borderRadius: widget.borderRadius,
-          ),
-          child: Padding(
-            padding: widget.padding,
-            child: widget.child,
-          ),
-        );
-      },
+    return SizedBox(
+      height: widget.height,
+      width: widget.width, // Use the dynamic width value
+      child: AnimatedBuilder(
+        animation: _animation,
+        builder: (context, child) {
+          return CustomPaint(
+            painter: BorderBeamPainter(
+              progress: _animation.value,
+              borderWidth: widget.borderWidth,
+              colorFrom: widget.colorFrom,
+              colorTo: widget.colorTo,
+              staticBorderColor: widget.staticBorderColor,
+              borderRadius: widget.borderRadius,
+            ),
+            child: Padding(
+              padding: widget.padding,
+              child: DefaultTextStyle(
+                style: TextStyle(fontSize: widget.textSize),
+                child: widget.child,
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
 }
@@ -137,6 +150,7 @@ class BorderBeamPainter extends CustomPainter {
       gradientStart,
       gradientEnd,
       [
+        // ignore: deprecated_member_use
         colorTo.withOpacity(0.0), // Transparent color for fading effect
         colorTo,
         colorFrom,

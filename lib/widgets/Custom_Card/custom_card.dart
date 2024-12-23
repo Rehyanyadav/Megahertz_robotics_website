@@ -8,8 +8,8 @@ class CustomImageCardWidget extends StatelessWidget {
   const CustomImageCardWidget({
     super.key,
     required this.cardItems,
-    this.cardWidth = 400,
-    this.cardHeight = 400,
+    this.cardWidth = 300,
+    this.cardHeight = 300,
   });
 
   @override
@@ -30,7 +30,7 @@ class CustomImageCardWidget extends StatelessWidget {
         clipBehavior: Clip.hardEdge,
         elevation: 5,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(20),
         ),
         child: InkWell(
           splashColor: Colors.blue.withAlpha(30),
@@ -43,7 +43,7 @@ class CustomImageCardWidget extends StatelessWidget {
               children: [
                 // Image section
                 Expanded(
-                  flex: 3,
+                  flex: 4,
                   child: Image.asset(
                     item.imagePath,
                     fit: BoxFit.cover,

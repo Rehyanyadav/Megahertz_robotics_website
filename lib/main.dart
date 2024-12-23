@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:megahertz_robotics/screens/splash_screen.dart';
 import 'package:meta_seo/meta_seo.dart';
 
+import 'screens/home_page.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -31,6 +33,7 @@ class MyApp extends StatelessWidget {
     // home: const HomePage());
   }
 }
+
 
 
 // FCC623 

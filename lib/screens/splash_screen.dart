@@ -64,7 +64,7 @@ class _SplashScreenState extends State<SplashScreen>
                 child: HyperText(
                   text: "MegaHertz Robotics",
                   style: GoogleFonts.orbitron(
-                    fontSize: 30,
+                    fontSize: 28,
                     fontWeight: FontWeight.bold,
                     color: const Color.fromARGB(255, 255, 204, 0),
                   ),
@@ -86,15 +86,31 @@ class _SplashScreenState extends State<SplashScreen>
               ),
             ),
             const SizedBox(height: 40),
-            FadeTransition(
-              opacity: _animation,
-              child: const Text(
-                'Co. powered and managed by Alphacodes101',
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white70,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                FadeTransition(
+                  opacity: _animation,
+                  child: const Text(
+                    'Co.powered and managed by ',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      color: Color.fromARGB(255, 0, 170, 255),
+                    ),
+                  ),
                 ),
-              ),
+                FadeTransition(
+                  opacity: _animation,
+                  child: const Text(
+                    'A L P H A  C O D E S ',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      color: Color.fromARGB(255, 0, 170, 255),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),

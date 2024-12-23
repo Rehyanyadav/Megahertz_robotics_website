@@ -3,7 +3,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:social_media_buttons/social_media_buttons.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DrawerMobileTab extends StatelessWidget {
@@ -20,13 +19,13 @@ class DrawerMobileTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Colors.transparent,
+      backgroundColor: const Color.fromARGB(0, 209, 209, 209),
       child: ClipRRect(
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
           child: Container(
             decoration: BoxDecoration(
-              color: Colors.black.withOpacity(0.3),
+              color: const Color.fromARGB(255, 255, 255, 255).withOpacity(0.3),
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -61,19 +60,19 @@ class DrawerMobileTab extends StatelessWidget {
                 _buildMenuItem(
                   icon: Icons.shopping_cart_outlined,
                   title: 'Buy Products',
-                  onTap: () 
-                    // Navigation logic
-                  async {
-                  // Open link action
-                  final Uri url = Uri.parse(
-                      'https://alphacodes101.github.io/megahertz_ordering_system/');
+                  onTap: ()
+                      // Navigation logic
+                      async {
+                    // Open link action
+                    final Uri url = Uri.parse(
+                        'https://alphacodes101.github.io/megahertz_ordering_system/');
 
-                  if (await canLaunchUrl(url)) {
-                    launchUrl(url);
-                  } else {
-                    throw 'Could not launch $url';
-                  }
-                },
+                    if (await canLaunchUrl(url)) {
+                      launchUrl(url);
+                    } else {
+                      throw 'Could not launch $url';
+                    }
+                  },
                 ),
 
                 _buildMenuItem(
@@ -100,12 +99,23 @@ class DrawerMobileTab extends StatelessWidget {
                     const SizedBox(width: 20),
                     const SizedBox(width: 10),
                     _socialMediaIcon(
-                      icon: const SocialMediaButton.linkedin(
-                        url: "https://www.linkedin.com/company/alphacodes101/",
-                        size: 30,
-                        color: Color.fromARGB(255, 0, 19, 194),
+                      icon: const Icon(
+                        Icons.email,
+                        size: 35,
+                        color: Color.fromARGB(255, 255, 162, 0),
                       ),
-                      url: "https://www.linkedin.com/company/alphacodes101/",
+                      url: "mailto:megahertzrobotics@gmail.com",
+                    ),
+                    const SizedBox(width: 10),
+                    _socialMediaIcon(
+                      icon: const SocialMediaButton.linkedin(
+                        url:
+                            "https://www.linkedin.com/company/megahertz-robotics",
+                        size: 30,
+                        color: Color.fromARGB(255, 255, 162, 0),
+                      ),
+                      url:
+                          "https://www.linkedin.com/company/megahertz-robotics",
                     ),
                     const SizedBox(width: 10),
                     _socialMediaIcon(
@@ -113,7 +123,7 @@ class DrawerMobileTab extends StatelessWidget {
                         url:
                             "https://www.facebook.com/profile.php?id=100077276373410&mibextid=JRoKGi",
                         size: 30,
-                        color: Color.fromARGB(255, 4, 0, 255),
+                        color: Color.fromARGB(255, 255, 162, 0),
                       ),
                       url:
                           "https://www.facebook.com/profile.php?id=100077276373410&mibextid=JRoKGi",
@@ -121,20 +131,22 @@ class DrawerMobileTab extends StatelessWidget {
                     const SizedBox(width: 10),
                     _socialMediaIcon(
                       icon: const SocialMediaButton.youtube(
-                        url: "https://www.youtube.com/@alphacodes8618",
+                        url: "https://www.youtube.com/c/TechieLagan",
                         size: 30,
-                        color: Color.fromARGB(255, 255, 0, 0),
+                        color: Color.fromARGB(255, 255, 162, 0),
                       ),
-                      url: "https://www.youtube.com/@alphacodes8618",
+                      url: "https://www.youtube.com/c/TechieLagan",
                     ),
                     const SizedBox(width: 10),
                     _socialMediaIcon(
-                      icon: const Icon(
-                        FontAwesomeIcons.blogger,
-                        color: Colors.orangeAccent,
+                      icon: const SocialMediaButton.instagram(
+                        url:
+                            "https://www.instagram.com/megahertz_robotics/p/DCxAuknTHtZ/",
                         size: 30,
+                        color: Color.fromARGB(255, 255, 162, 0),
                       ),
-                      url: '',
+                      url:
+                          "https://www.instagram.com/megahertz_robotics/p/DCxAuknTHtZ/",
                     ),
                     const SizedBox(width: 10),
                   ],
@@ -143,14 +155,17 @@ class DrawerMobileTab extends StatelessWidget {
                 Column(
                   children: [
                     const Text(
-                      'Co.powered by AlphaCodes101',
+                      'Co.powered by ',
                       style: TextStyle(
-                        color: Color.fromARGB(255, 0, 98, 255),
+                        color: Color.fromARGB(255, 0, 234, 255),
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    TextButton(
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.transparent,
+                      ),
                       onPressed: () async {
                         const url =
                             'https://alphacodes101.github.io/alphacodes.github.io/';
@@ -161,9 +176,9 @@ class DrawerMobileTab extends StatelessWidget {
                         }
                       },
                       child: const Text(
-                        'Alphacodes101',
+                        'Alphacodes',
                         style: TextStyle(
-                            color: Color.fromARGB(255, 0, 98, 255),
+                            color: Color.fromARGB(255, 0, 229, 255),
                             fontSize: 16.0,
                             fontWeight: FontWeight.bold),
                       ),

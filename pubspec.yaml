@@ -60,6 +60,8 @@ dependencies:
   shared_preferences_web: ^2.4.2
   cached_network_image: ^3.4.1
   flutter_marquee: ^2.0.1
+  firebase_core: ^3.12.1
+  cloud_firestore: ^5.6.5
 
 
 dev_dependencies:

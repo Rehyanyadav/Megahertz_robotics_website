@@ -1,4 +1,4 @@
-// ignore_for_file: deprecated_member_use
+// ignore_for_file: deprecated_member_use, unused_local_variable
 
 import 'dart:math';
 
@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage>
       'assets/achivements_Participation_photos/img04.png',
       'assets/achivements_Participation_photos/img05.jpg',
       'assets/achivements_Participation_photos/img06.jpg',
-      'assets/achivements_Participation_photos/img07.png',
+      'assets/achivements_Participation_photos/img07.jpg',
       'assets/achivements_Participation_photos/img08.jpg',
       'assets/achivements_Participation_photos/img09.jpg',
     ];
@@ -113,15 +113,6 @@ class _HomePageState extends State<HomePage>
   Widget build(BuildContext context) {
     super.build(context);
 
-    if (kIsWeb) {
-      MetaSEO meta = MetaSEO();
-      meta.author(author: 'Megahertz Robotics');
-      meta.description(description: 'Robotics and electronics online store');
-      meta.keywords(
-        keywords: 'Flutter, Dart, SEO, Meta, Web, MegaHertz Robotics',
-      );
-    }
-
     return LayoutBuilder(
       builder: (context, constraints) {
         final isDesktop = constraints.maxWidth >= KMinDesktopWidth;
@@ -151,6 +142,7 @@ class _HomePageState extends State<HomePage>
                   const DividerWidget(),
                   const SizedBox(height: 40),
                   _buildHeader('O U R  J O U R N E Y'),
+                  const SizedBox(height: 20),
                   const SizedBox(height: 20),
                   _buildAboutSection(isDesktop),
                   const DividerWidget(),
@@ -606,134 +598,6 @@ class WaveGridPainter extends CustomPainter {
   @override
   bool shouldRepaint(WaveGridPainter oldDelegate) => true;
 }
-
-// class ModernWaveGridPainter extends CustomPainter {
-//   final Animation<double> animation;
-//   final Color primaryColor;
-//   final Color secondaryColor;
-//   final double gridSpacing;
-
-//   ModernWaveGridPainter({
-//     required this.animation,
-//     required this.primaryColor,
-//     required this.secondaryColor,
-//     required this.gridSpacing,
-//   });
-
-//   @override
-//   void paint(Canvas canvas, Size size) {
-//     final paint = Paint()..strokeWidth = 1.0;
-//     final horizontalLines = (size.height / gridSpacing).ceil() + 1;
-//     final verticalLines = (size.width / gridSpacing).ceil() + 1;
-
-//     // Create particle effect with dynamic connections
-//     for (var i = 0; i < horizontalLines; i++) {
-//       for (var j = 0; j < verticalLines; j++) {
-//         final x = j * gridSpacing;
-//         // Create multiple wave layers for depth
-//         final waveOffset1 = sin(animation.value * 2 * pi + i * 0.3) * 20;
-//         final waveOffset2 = cos(animation.value * 1.5 * pi + j * 0.4) * 15;
-//         final waveOffset = waveOffset1 + waveOffset2;
-
-//         final y = i * gridSpacing + waveOffset;
-
-//         // Create dynamic color gradient
-//         final colorProgress =
-//             (sin(animation.value * pi + (x + y) / 200) + 1) / 2;
-//         final color = Color.lerp(
-//           primaryColor,
-//           secondaryColor,
-//           colorProgress,
-//         )!;
-
-//         // Draw glowing particles
-//         final particleGlow = Paint()
-//           ..shader = RadialGradient(
-//             colors: [
-//               color.withOpacity(0.6),
-//               color.withOpacity(0.3),
-//               color.withOpacity(0.0),
-//             ],
-//           ).createShader(Rect.fromCircle(
-//             center: Offset(x, y),
-//             radius: 8,
-//           ));
-
-//         canvas.drawCircle(Offset(x, y), 8, particleGlow);
-//         canvas.drawCircle(
-//           Offset(x, y),
-//           2 + sin(animation.value * 4 * pi + x / 50) * 1,
-//           paint..color = color.withOpacity(0.8),
-//         );
-
-//         // Draw dynamic connections
-//         if (j > 0) {
-//           final prevX = x - gridSpacing;
-//           final prevY = i * gridSpacing +
-//               sin(animation.value * 2 * pi + (i - 1) * 0.3) * 20 +
-//               cos(animation.value * 1.5 * pi + (j - 1) * 0.4) * 15;
-
-//           final distance = sqrt(pow(x - prevX, 2) + pow(y - prevY, 2));
-//           final maxDistance = gridSpacing * 1.5;
-
-//           if (distance < maxDistance) {
-//             final gradient = LinearGradient(
-//               colors: [
-//                 color.withOpacity(0.4 * (1 - distance / maxDistance)),
-//                 color.withOpacity(0.1 * (1 - distance / maxDistance)),
-//               ],
-//             ).createShader(Rect.fromPoints(
-//               Offset(prevX, prevY),
-//               Offset(x, y),
-//             ));
-
-//             canvas.drawLine(
-//               Offset(prevX, prevY),
-//               Offset(x, y),
-//               paint
-//                 ..shader = gradient
-//                 ..strokeWidth = 1.5 * (1 - distance / maxDistance),
-//             );
-//           }
-//         }
-
-//         // Draw vertical connections
-//         if (i > 0) {
-//           final upX = x;
-//           final upY = (i - 1) * gridSpacing +
-//               sin(animation.value * 2 * pi + (i - 1) * 0.3) * 20 +
-//               cos(animation.value * 1.5 * pi + j * 0.4) * 15;
-
-//           final distance = sqrt(pow(x - upX, 2) + pow(y - upY, 2));
-//           final maxDistance = gridSpacing * 1.5;
-
-//           if (distance < maxDistance) {
-//             final gradient = LinearGradient(
-//               colors: [
-//                 color.withOpacity(0.3 * (1 - distance / maxDistance)),
-//                 color.withOpacity(0.1 * (1 - distance / maxDistance)),
-//               ],
-//             ).createShader(Rect.fromPoints(
-//               Offset(upX, upY),
-//               Offset(x, y),
-//             ));
-
-//             canvas.drawLine(
-//               Offset(upX, upY),
-//               Offset(x, y),
-//               paint
-//                 ..shader = gradient
-//                 ..strokeWidth = 1.5 * (1 - distance / maxDistance),
-//             );
-//           }
-//         }
-//       }
-//     }
-//   }
-
-//   @override
-//   bool shouldRepaint(ModernWaveGridPainter oldDelegate) => true;
-// }
 
 class MatrixGridPainter extends CustomPainter {
   final Animation<double> animation;

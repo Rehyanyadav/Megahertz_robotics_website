@@ -1,3 +1,4 @@
 {
-    "cmake.sourceDirectory": "/Users/rehyanyadav/Downloads/MegaHertz_robotics/megahertz_robotics/windows"
+    "cmake.sourceDirectory": "/Users/rehyanyadav/Downloads/MegaHertz_robotics/megahertz_robotics/windows",
+    "java.configuration.updateBuildConfiguration": "interactive"
 }

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "413685409021",
+    "project_id": "megahertzmainwebsite",
+    "storage_bucket": "megahertzmainwebsite.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:413685409021:android:c7652865a54dc22d610a94",
+        "android_client_info": {
+          "package_name": "com.example.megahertz_robotics"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWEcPbrc1t9bZS7eO4Q9o2h7lCoHkCO5s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
